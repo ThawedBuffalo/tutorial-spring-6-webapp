@@ -1,6 +1,8 @@
 package tbs.spring6webapp.domain;
 
 import jakarta.persistence.*;
+
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -45,4 +47,28 @@ public class Author {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Author author)) return false;
+
+        return Objects.equals(getId(), author.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
+    }
 }
+
